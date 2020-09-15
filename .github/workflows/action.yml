@@ -1,0 +1,32 @@
+- name: action-1
+  id: set-result
+  on: [push, pull_request]
+  uses: actions/github-script@v3.0.0
+  with:
+    script: return "Hello!"
+    result-encoding: string
+
+- name: action-2
+  on: [push, pull_request]
+  run: echo "${{ steps.set-result.outputs.result }}"
+
+- name: action-3
+  on:
+    workflow_dispatch:
+      inputs:
+        input_1:
+          description: 'Input 1'
+          required: true
+          default: 0
+        input_2:
+          description: 'Input 2'
+          required: false
+          default: ''
+        input_3:
+          description: 'Input 2'
+          required: false
+          default: True
+
+- name: action-4
+  on: [push, pull_request]
+  run: echo "${{ github.event.inputs }}"
