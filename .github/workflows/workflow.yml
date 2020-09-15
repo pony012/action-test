@@ -1,0 +1,16 @@
+name: action-1
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: action-1
+      id: set-result
+      uses: actions/github-script@v3.0.0
+      with:
+        script: return "Hello!"
+        result-encoding: string
+
+    - name: action-2
+      run: echo "${{ steps.set-result.outputs.result }}"
