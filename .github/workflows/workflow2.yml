@@ -1,0 +1,23 @@
+name: action-2
+on:
+  workflow_dispatch:
+    inputs:
+      input_1:
+        description: 'Input 1'
+        required: true
+        default: 0
+      input_2:
+        description: 'Input 2'
+        required: false
+        default: ''
+      input_3:
+        description: 'Input 2'
+        required: false
+        default: True
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: action-4
+      run: echo "${{ github.event.inputs }}"
